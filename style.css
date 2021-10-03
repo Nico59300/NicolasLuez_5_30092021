@@ -1,0 +1,36 @@
+header {
+    padding: 1rem;
+}
+#result {
+    padding: 1rem;
+}
+
+#result h2 {
+    margin-bottom: 1rem;
+}
+
+.card {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+img {
+    width: 100%;
+}
+
+
+/**
+/  Page product.html
+/**/
+
+
+colors-container {
+    height: 3rem;
+    width: 100%;
+    background-color: burlywood;
+}
+
+colors-container div {
+    height: 2rem;
+    width: 2rem;
+}
