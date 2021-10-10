@@ -1,11 +1,31 @@
 header {
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    
 }
-#result {
+
+header nav {
+    display: flex;
+    flex-direction: row;
+}
+
+header nav a {
+    padding: 1rem;
+    text-decoration: none;
+    color: black;
+}
+
+header nav a:hover {
+    color:chocolate;
+    cursor: pointer;
+}
+
+#collection {
     padding: 1rem;
 }
 
-#result h2 {
+#collection h2 {
     margin-bottom: 1rem;
 }
 
@@ -18,12 +38,21 @@ img {
     width: 100%;
 }
 
+card-body h2{
+    text-align: center;
+}
+footer {
+    text-align: center;
+}
+
+
 
 /**
 /  Page product.html
 /**/
-
-
+#teddy {
+    margin: 1rem;
+}
 colors-container {
     height: 3rem;
     width: 100%;
@@ -33,4 +62,42 @@ colors-container {
 colors-container div {
     height: 2rem;
     width: 2rem;
+}
+
+
+.messageSuccess {
+    border: 1px solid green;
+    background-color: chartreuse;
+    color: black;
+    padding: 1rem;
+}
+
+
+
+
+/**
+/  Page cart.html
+/**/
+
+#item-list  li  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+    padding: 1rem;
+    border: 1px solid lightgray;
+    list-style-type: none;
+}
+
+#item-list  li img {
+    height: 100%;
+    width: auto;
+    border-right: 2px solid lightgray;
+}
+
+#item-list  li span {
+    height: 100%;
+    border: 1px solid lightgreen;
 }

@@ -1,63 +1,120 @@
 // orinoco backend url
-let onlineBackendUrl = "https://backend-orinoco.herokuapp.com/api/teddies";
-let localBackendUrl = "http://localhost:3000/api/teddies"
-
-
+const onlineBackendUrl = "https://backend-orinoco.herokuapp.com/api/teddies";
+const localBackendUrl = "http://localhost:3000/api/teddies"
+// element html
 const teddy = document.getElementById("teddy");
 const colorsContainer = document.getElementById("colors-container");
-let  documentTitle = document.title;
-let colors = [];
-// on récupère la requête dans l'url
-let query = window.location.search;
-const urlParams = new URLSearchParams(query);
-//on récupére l'ID dans l'url
-let id = urlParams.get("id");
-// split pour retirer guillements
-let arr = id.split('"');
-id = arr[1];
+const alert = document.getElementById('alert');
+// id
+const id = getId();
+//variables
+let ted;
+let tedToCart;
+let cart;
 
-let url = onlineBackendUrl + "/" + id;
+//Functions
+function getId() {
 
-function renderColors (colors) {
-    colors.forEach( element => {
-        let color = `
-        <div background-color="${element}">
-        `
-        colorsContainer.innerHTML += color;
-    })
+    // on récupère la requête dans l'url
+    let query = window.location.search;
+
+    //on récupére l'ID dans l'url
+    const urlParams = new URLSearchParams(query);
+    let id = urlParams.get("id");
+
+    // split pour retirer guillements
+    let arr = id.split('"');
+    id = arr[1];
+    return id;
+}
+
+function getCart() {
+    if (localStorage.cart != null) {
+        return JSON.parse(localStorage.getItem('cart'))
+    } else {
+        return [];
+    }
+
+}
+
+function verifInCart(cart) {
+    if (cart.length > 0) {
+        let indexes = [];
+       cart.forEach((el) => {
+           if(el.id == tedToCart.id){
+               indexes.push(cart.indexOf(el))
+           }
+       })
+       if (indexes.length >0) {
+           return true
+       }else {return false}
+       
+    }else {
+        return false
+    }
+
+}
+
+
+
+function addToCart() {
+    cart = getCart();
+    let inCart = verifInCart(cart);
+
+    if (inCart == false) {
+        cart.push(tedToCart)
+        console.log('ajouté au panier')
+    }else {
+        cart.forEach((el) => {
+            if(el.id == tedToCart.id) {
+                let index = cart.indexOf(el);
+                cart[index].quantity += 1;
+                console.log('quantité modifiée')
+            }
+        })
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 
 function getOneTeddy() {
+
+    let url = onlineBackendUrl + "/" + id;
     fetch(url)
         .then(res => res.json())
         .then(obj => {
-            let ted = obj;
-            let price = ted.price;
-            let FormattedPrice = price.toString().substr(price.lenght, 2) + ",00";
 
-            colors = ted.colors;
-            console.log("colors " + colors)
+            let ted = obj;
+
+            let price = ted.price;
+            let formattedPrice = price.toString().substr(price.lenght, 2) + ",00";
+            ted.price = formattedPrice;
+
+
+            tedToCart = {
+                "id": ted._id,
+                "name": ted.name,
+                "imageUrl": ted.imageUrl,
+                "price": ted.price,
+                "quantity": 1
+            }
+
             let template = `
-            <article>
+            <article id="${ted._id}" class="text-center">
                 <h2>${ted.name}</h2>
                 <img src="${ted.imageUrl}" alt="image de ${ted.name} "}"/>
                 <p>${ted.description}</p>
                 <div>
                     <div id="colors-container"></div>
-                    <p>prix : ${FormattedPrice + " €"}</p>
-                    <button class="btn btn-primary">Ajouter au panier</buttob
+                    <p>prix : ${formattedPrice + " €"}</p>
+                    <button class="btn btn-dark" onClick="addToCart()">Ajouter au panier</button>
                 </div>
             </article>
             `
             teddy.innerHTML += template;
-            renderColors(colors)
             document.title = ted.name + " | Orinoco, ours en peluche";
         })
 }
 
-
-
-
+//APP
 getOneTeddy();
-
