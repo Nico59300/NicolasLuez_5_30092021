@@ -76,7 +76,23 @@ function addToCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-
+function renderColors(colors) {
+    let colorsContainer ="";
+    colors.forEach((col) => {
+        let color = `
+        <div>
+            <input type="radio" id="${col}" name ="color" value="${col}" />
+            <label for="${col}">${col}</label>
+        </div>`
+        colorsContainer += color;
+    })
+    colorsContainer = '<div id="colors-container"> ' + colorsContainer + '</div>'
+    return colorsContainer;
+    
+}
+function getColor() {
+    
+}
 function getOneTeddy() {
 
     let url = onlineBackendUrl + "/" + id;
@@ -85,11 +101,14 @@ function getOneTeddy() {
         .then(obj => {
 
             let ted = obj;
+            
+            
 
             let price = ted.price;
             let formattedPrice = price.toString().substr(price.lenght, 2) + ",00";
             ted.price = formattedPrice;
 
+            let colorElement = renderColors(ted.colors);
 
             tedToCart = {
                 "id": ted._id,
@@ -105,13 +124,20 @@ function getOneTeddy() {
                 <img src="${ted.imageUrl}" alt="image de ${ted.name} "}"/>
                 <p>${ted.description}</p>
                 <div>
-                    <div id="colors-container"></div>
+                    <h4>Choissisez votre couleur : </h4>
+                    ${colorElement}
                     <p>prix : ${formattedPrice + " €"}</p>
                     <button class="btn btn-dark" onClick="addToCart()">Ajouter au panier</button>
                 </div>
             </article>
             `
             teddy.innerHTML += template;
+            let input = document.getElementsByName('color');
+            input.forEach((el) => {
+                el.addEventListener('click', (e) => {
+                    tedToCart.color =  e.target.value;
+                })
+            })
             document.title = ted.name + " | Orinoco, ours en peluche";
         })
 }

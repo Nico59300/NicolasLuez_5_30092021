@@ -1,3 +1,7 @@
+// orinoco backend url
+let onlineBackendUrl = "https://backend-orinoco.herokuapp.com/api/teddies/order";
+let localBackendUrl = "http://localhost:3000/api/order"
+
 
 let ul = document.getElementById('item-list');
 let cart = getCart();
@@ -56,11 +60,11 @@ function removeItem(id) {
         }
     })
     cart.splice(i, 1)
-        localStorage.setItem('cart', JSON.stringify(cart));
-        cart = getCart();
-        ul.innerHTML = "";
-        displayItems();
-        calculatePrice();
+    localStorage.setItem('cart', JSON.stringify(cart));
+    cart = getCart();
+    ul.innerHTML = "";
+    displayItems();
+    calculatePrice();
 }
 
 function getCart() {
@@ -71,15 +75,33 @@ function getCart() {
 
 function commander() {
     let contact = {
-        firstname: document.getElementById('firstname').value,
-        lastname: document.getElementById('lastname').value,
-        adress: document.getElementById('adress').value,
+        firstName: document.getElementById('firstname').value,
+        lastName: document.getElementById('lastname').value,
+        address: document.getElementById('adress').value,
         city: document.getElementById('city').value,
         email: document.getElementById('email').value
     };
     console.log(contact)
+    let products = [];
+    cart.forEach((el) => {
+        products.push(el.id);
+    })
+    console.log(products)
 
-    console.log("commandé")
+    fetch(onlineBackendUrl,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/JSON',
+        },
+        body: JSON.stringify({contact,products})
+    })
+    .then(res => res.json())
+    .then(data => {
+        localStorage.removeItem('cart')
+        window.location = `confirmation.html?orderId="${data.orderId}"`
+    })
+        
+
 }
 
 function calculatePrice() {

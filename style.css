@@ -53,15 +53,15 @@ footer {
 #teddy {
     margin: 1rem;
 }
-colors-container {
-    height: 3rem;
-    width: 100%;
-    background-color: burlywood;
+
+#colors-container {
+    display: flex;
+    flex-direction: row;
+
 }
 
-colors-container div {
-    height: 2rem;
-    width: 2rem;
+#colors-container div {
+    margin-right: 1rem;
 }
 
 
@@ -78,6 +78,10 @@ colors-container div {
 /**
 /  Page cart.html
 /**/
+
+#cartContainer, #payment {
+    padding: 1rem;
+}
 
 #item-list  li  {
     display: flex;
@@ -101,3 +105,12 @@ colors-container div {
     height: 100%;
     border: 1px solid lightgreen;
 }
+
+form {
+    padding: 1rem;
+}
+
+form input {
+    margin-bottom: 1rem;;
+}
+
