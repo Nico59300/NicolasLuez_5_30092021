@@ -97,7 +97,9 @@ function commander() {
     })
     .then(res => res.json())
     .then(data => {
-        localStorage.removeItem('cart')
+        console.log(data)
+        localStorage.removeItem('cart');
+        localStorage.setItem('order', JSON.stringify(data))
         window.location = `confirmation.html?orderId="${data.orderId}"`
     })
         

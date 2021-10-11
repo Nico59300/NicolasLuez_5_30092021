@@ -1,8 +1,14 @@
-// on récupère la requête dans l'url
-let query = window.location.search;
-console.log(query)
-//on récupére l'ID dans l'url
-const urlParams = new URLSearchParams(query);
-let id = urlParams.get("orderId");
-console.log(id);
-document.getElementById('orderId').innerHTML = id;
+// recupere order in localstorage
+
+let order =getOrder();
+
+function getOrder() {
+    if(localStorage.getItem('order')) {
+         return JSON.parse(localStorage.getItem('order'))
+    }else {console.log("error")}
+}
+let lastName = order.contact.lastName;
+let orderId = order.orderId;
+
+document.getElementById('lastName').innerHTML = lastName;
+document.getElementById('orderId').innerHTML = orderId;
