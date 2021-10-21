@@ -126,8 +126,8 @@ function getOneTeddy() {
 
             let template = `
             <article id="${ted._id}" class="row">
-                <div class="col-xs-12 col-md-6 col-lg-6   d-flex justify-content-center">
-                    <img src="${ted.imageUrl}" class="align-middle rounded " alt="image de ${ted.name}" title="image de ${ted.name}"/>
+                <div class="col-xs-12 col-md-6 col-lg-6 d-flex">
+                    <img src="${ted.imageUrl}" class="align-middle rounded img-fluid w-100 border border-dark" alt="image de ${ted.name}" title="image de ${ted.name}"/>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-6 ">
                     <h2 class="text-sm-center">${ted.name}</h2>

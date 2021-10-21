@@ -16,37 +16,41 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script defer src="product.js"></script>
 </head>
-<body class="d-flex flex-column ">
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <div>
-            <a class="navbar-brand" href="index.html"> Orinoco</a>
+<body class="min-vh-100">
+  <div class="d-flex flex-column min-vh-100">
+    <header class="bg-dark">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <div>
+              <a class="navbar-brand" href="index.html"> Orinoco</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Panier</a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Panier</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-</header>
+        </nav>
+      </div>
+    </header>
     <main>
-        <div id="alert"></div>
-        <div id="teddy">
-            
-        </div>
+          <div class="container">
+            <div id="alert"></div>
+            <div id="teddy">
+          </div>
     </main>
-    <footer class="footer py-3 text-white bg-dark">
-        <p>Orinoco, 2021 all rights reserved</p>
+    <footer class="mt-auto text-white bg-dark">
+          <p>Orinoco, 2021 all rights reserved</p>
     </footer>
+  </div>
 </body>
 </html>

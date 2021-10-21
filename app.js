@@ -16,12 +16,15 @@ function getAllTeddies(){
             // pour chaque element on crée un article avec les info
             let ted = `
             <div class="col-xs-12 col-md-6 col-lg-4">
-                <article class="card">
-                    <img class="card-img-top rounded col-xs-12 col-sm-6 col-lg-4" src="${element.imageUrl}" title="ourson ${element.name}" alt="ourson ${element.name}"/>
-            
-                    <div class="card-body text-center">
-                    <h2 class="card-title">${element.name}</h2>
-                    <a class="btn btn-outline-dark" href='product.html?id="${element._id}"'>Voir ${element.name}</a>
+                <article class="d-flex flex-column bg-light">
+
+                    <div class="text-center">
+                        <h2 class="">${element.name}</h2>
+                        <img class="rounded w-100 mb-5 border border-dark" src="${element.imageUrl}" title="ourson ${element.name}" alt="ourson ${element.name}"/>
+                    </div>
+
+                    <div class="text-center">
+                        <a class="btn btn-outline-dark" href='product.html?id="${element._id}"'>Voir ${element.name}</a>
                     </div>
                  </article>
             </div>`;
