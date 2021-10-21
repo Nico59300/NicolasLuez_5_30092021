@@ -87,7 +87,7 @@ function commander() {
         products.push(el.id);
     })
     console.log(products)
-
+    // on envoi au backend un objet
     fetch(onlineBackendUrl,{
         method: 'POST',
         headers: {

@@ -34,7 +34,6 @@ function getCart() {
     } else {
         return [];
     }
-
 }
 
 function verifInCart(cart) {
@@ -45,7 +44,7 @@ function verifInCart(cart) {
                indexes.push(cart.indexOf(el))
            }
        })
-       if (indexes.length >0) {
+    if (indexes.length >0) {
            return true
        }else {return false}
        
@@ -54,8 +53,6 @@ function verifInCart(cart) {
     }
 
 }
-
-
 
 function addToCart() {
     cart = getCart();
@@ -76,23 +73,32 @@ function addToCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+
+
+//
 function renderColors(colors) {
+
+    // conteneur vide pour recevoir les div générées pour chaque couleur 
     let colorsContainer ="";
+
+    //pour chaque couleurs on génère une div contenant un input radio
     colors.forEach((col) => {
+
         let color = `
-        <div>
-            <input type="radio" id="${col}" name ="color" value="${col}" />
-            <label for="${col}">${col}</label>
+        <div >
+            <input type="radio" id="${col}"  name ="color" value="${col}" />
+            <label for="${col}" >${col}</label>
         </div>`
+        // on ajoute chaque div  
         colorsContainer += color;
     })
+    // on ajoute un container autour des élement
     colorsContainer = '<div id="colors-container"> ' + colorsContainer + '</div>'
+    // on renvoi la variable
     return colorsContainer;
     
 }
-function getColor() {
-    
-}
+
 function getOneTeddy() {
 
     let url = onlineBackendUrl + "/" + id;
@@ -119,15 +125,17 @@ function getOneTeddy() {
             }
 
             let template = `
-            <article id="${ted._id}" class="text-center">
-                <h2>${ted.name}</h2>
-                <img src="${ted.imageUrl}" alt="image de ${ted.name} "}"/>
-                <p>${ted.description}</p>
-                <div>
+            <article id="${ted._id}" class="row">
+                <div class="col-xs-12 col-md-6 col-lg-6   d-flex justify-content-center">
+                    <img src="${ted.imageUrl}" class="align-middle rounded" alt="image de ${ted.name}" title="image de ${ted.name}"/>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-6 ">
+                    <h2>${ted.name}</h2>
+                    <p>${ted.description}</p>
                     <h4>Choissisez votre couleur : </h4>
                     ${colorElement}
                     <p>prix : ${formattedPrice + " €"}</p>
-                    <button class="btn btn-dark" onClick="addToCart()">Ajouter au panier</button>
+                    <button class="btn btn-outline-dark" onClick="addToCart()">Ajouter au panier</button>
                 </div>
             </article>
             `

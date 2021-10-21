@@ -6,23 +6,27 @@ let collection = document.getElementById("collection");
 
 
 function getAllTeddies(){
-
+    // onrécupère les teddies
     fetch(onlineBackendUrl)
     .then( data => data.json())
     .then(obj => {
         let teddies = obj;
         
         teddies.forEach(element => {
-
+            // pour chaque element on crée un article avec les info
             let ted = `
-            <article class="card text-center">
-                <img class="card-img-top" src="${element.imageUrl}" title="ourson ${element.name}" alt="ourson ${element.name}"/>
-                
-                <div class="card-body">
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <article class="card">
+                    <img class="card-img-top rounded col-xs-12 col-sm-6 col-lg-4" src="${element.imageUrl}" title="ourson ${element.name}" alt="ourson ${element.name}"/>
+            
+                    <div class="card-body text-center">
                     <h2 class="card-title">${element.name}</h2>
                     <a class="btn btn-outline-dark" href='product.html?id="${element._id}"'>Voir ${element.name}</a>
-                </div>
-            </article>`;
+                    </div>
+                 </article>
+            </div>`;
+            
+            // et on ajoute le rendu au document
             collection.innerHTML += ted;
         });
         

@@ -7,6 +7,7 @@ function getOrder() {
          return JSON.parse(localStorage.getItem('order'))
     }else {console.log("error")}
 }
+
 let lastName = order.contact.lastName;
 let orderId = order.orderId;
 
