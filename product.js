@@ -125,18 +125,34 @@ function getOneTeddy() {
             }
 
             let template = `
-            <article id="${ted._id}" class="row">
-                <div class="col-xs-12 col-md-6 col-lg-6 d-flex">
-                    <img src="${ted.imageUrl}" class="align-middle rounded img-fluid w-100 border border-dark" alt="image de ${ted.name}" title="image de ${ted.name}"/>
+            <article id="${ted._id}" class="row p-1">
+
+                <h2 class="mb-5 p-2 text-center bg-light text-dark ">${ted.name}</h2>
+
+                <div class="col-xs-12 col-md-6 col-lg-6 text-center">
+                    <img src="${ted.imageUrl}" class="align-middle rounded img-fluid w-100 mb-3 border border-dark" alt="image de ${ted.name}" title="image de ${ted.name}"/>    
                 </div>
-                <div class="col-xs-12 col-md-6 col-lg-6 ">
-                    <h2 class="text-sm-center">${ted.name}</h2>
-                    <p>${ted.description}</p>
-                    <h4>Choissisez votre couleur : </h4>
-                    ${colorElement}
-                    <p>prix : ${formattedPrice + " €"}</p>
-                    <button class="btn btn-outline-dark" onClick="addToCart()">Ajouter au panier</button>
+
+                <div class="col-xs-12 col-md-6 col-lg-6  pb-5">
+                    <div>
+                        <h4>description :</h4>
+                        <p>${ted.description}</p>
+                    </div>
+                    <div>
+                        <h4 class="mb-3">Choissisez votre couleur : </h4>
+                        <div>${colorElement}</div>
+                    </div>
                 </div>
+
+                <div class="d-flex flex-column flex-md-row w-100 h-25 bg-info">
+                    <div class="col-md-6 text-center pt-3 ">
+                        <p>prix : ${formattedPrice + " €"}</p>
+                    </div>
+                    <div class="col-md-6 text-center d-flex h-100">
+                        <button class="btn btn-outline-dark h-75 align-self-center m-auto" onClick="addToCart()">Ajouter au panier</button>
+                    </div>
+                </div>
+
             </article>
             `
             teddy.innerHTML += template;
