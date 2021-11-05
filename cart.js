@@ -88,21 +88,21 @@ function commander() {
     })
     console.log(products)
     // on envoi au backend un objet
-    fetch(onlineBackendUrl,{
+    fetch(onlineBackendUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/JSON',
         },
-        body: JSON.stringify({contact,products})
+        body: JSON.stringify({ contact, products })
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        localStorage.removeItem('cart');
-        localStorage.setItem('order', JSON.stringify(data))
-        window.location = `confirmation.html?orderId="${data.orderId}"`
-    })
-        
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            localStorage.removeItem('cart');
+            localStorage.setItem('order', JSON.stringify(data))
+            window.location = `confirmation.html?orderId="${data.orderId}"`
+        })
+
 
 }
 
@@ -113,7 +113,7 @@ function calculatePrice() {
             let price = parseFloat(el.price) * parseFloat(el.quantity);
             totalPrice += price;
         })
-        document.getElementById('totalCart').innerHTML = "Total : " + totalPrice + ",00 €"
+        document.getElementById('totalCart').innerHTML = `<span class="text-uppercase fw-bolder">Total :</span> <span class="fw-bolder">${totalPrice},00 €</span>`
     }
 }
 
@@ -125,16 +125,26 @@ function displayItems() {
 
 
             let li = `
-            <li id="${element.id}" >
-                <img src="${element.imageUrl}" alt="ours ${element.name}" />
-                <div class="info-container">
-                    <span>${element.quantity}</span>
-                    <button id="${"moins-" + element.id}">-</button>
-                    <button id="${"plus-" + element.id}">+</button>
-                    <a href='product.html?id="${element.id}"'>${element.name}</a>
-                    <span>prix : ${element.price} €</span>
-                    <button id="del-${element.id}" class="btn btn-danger">Supprimer</button>
+            <li id="${element.id}" class="d-flex  justify-content-between  p-2 border border-2 border-secondary m-2" >
+                
+                <div class="d-none d-sm-block w-25">
+                    <img  src="${element.imageUrl}" alt="ours ${element.name}" />
                 </div>
+                          
+                    <div>
+                        <h4><a href='product.html?id="${element.id}"'>${element.name}</a></h4>
+                        <span>prix : ${element.price} €</span>
+                        <div>
+                            <span>quantité : ${element.quantity}</span>
+                            <span id="${"moins-" + element.id}"><i class="fas fa-minus-square "></i></span>
+                            <span id="${"plus-" + element.id}"><i class="fas fa-plus-square "></i></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <button id="del-${element.id}" class="btn btn-danger "><i class="fas fa-trash"></i></button>
+                    </div>
+
             </li>`;
 
             ul.innerHTML += li;
@@ -159,6 +169,7 @@ function displayItems() {
 
 
 displayItems()
+
 document.getElementById('buyButton').addEventListener('click', (e) => {
     e.preventDefault();
     commander();

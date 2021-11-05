@@ -4,7 +4,7 @@ const localBackendUrl = "http://localhost:3000/api/teddies"
 // element html
 const teddy = document.getElementById("teddy");
 const colorsContainer = document.getElementById("colors-container");
-const alert = document.getElementById('alert');
+const message = document.getElementById('message');
 // id
 const id = getId();
 //variables
@@ -54,18 +54,32 @@ function verifInCart(cart) {
 
 }
 
+function comfirmMessage (text) {
+    message.innerHTML = `<p>${text}</p>`;
+    message.classList.remove("d-none")
+    setTimeout( 
+        function() { 
+        message.innerHTML = "";
+        message.classList.add("d-none")
+        }, 4000);
+}
+
 function addToCart() {
     cart = getCart();
     let inCart = verifInCart(cart);
 
     if (inCart == false) {
         cart.push(tedToCart)
+        let message = "ajouté au panier";
+        comfirmMessage(message);
         console.log('ajouté au panier')
     }else {
         cart.forEach((el) => {
             if(el.id == tedToCart.id) {
                 let index = cart.indexOf(el);
                 cart[index].quantity += 1;
+                let message = "quantité modifiée";
+                comfirmMessage(message)
                 console.log('quantité modifiée')
             }
         })
@@ -75,7 +89,7 @@ function addToCart() {
 
 
 
-//
+
 function renderColors(colors) {
 
     // conteneur vide pour recevoir les div générées pour chaque couleur 
@@ -130,7 +144,7 @@ function getOneTeddy() {
                 <h2 class="mb-5 p-2 text-center bg-light text-dark ">${ted.name}</h2>
 
                 <div class="col-xs-12 col-md-6 col-lg-6 text-center">
-                    <img src="${ted.imageUrl}" class="align-middle rounded img-fluid w-100 mb-3 border border-dark" alt="image de ${ted.name}" title="image de ${ted.name}"/>    
+                    <img src="${ted.imageUrl}" class="img-fluid w-100 mb-3 border border-dark" alt="image de ${ted.name}" title="image de ${ted.name}"/>    
                 </div>
 
                 <div class="col-xs-12 col-md-6 col-lg-6  pb-5">
@@ -144,12 +158,12 @@ function getOneTeddy() {
                     </div>
                 </div>
 
-                <div class="d-flex flex-column flex-md-row w-100 h-25 bg-info">
+                <div class="d-flex flex-column flex-md-row w-100 h-25 ">
                     <div class="col-md-6 text-center pt-3 ">
                         <p>prix : ${formattedPrice + " €"}</p>
                     </div>
-                    <div class="col-md-6 text-center d-flex h-100">
-                        <button class="btn btn-outline-dark h-75 align-self-center m-auto" onClick="addToCart()">Ajouter au panier</button>
+                    <div class="col-md-6 text-center d-flex ">
+                        <button class="btn btn-outline-dark  m-auto" onClick="addToCart()">Ajouter au panier</button>
                     </div>
                 </div>
 

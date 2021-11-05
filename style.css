@@ -4,44 +4,9 @@
 
  header{
      margin-bottom: 1rem;
-    
-    /*
-    display: flex;
-    flex-direction: column;
-    background-color: lightskyblue;
-    border-bottom: 2px solid black;
-    */
-}
-/*
-header .brandname a {
-    text-decoration: none;
-    color: black;
-}
+ }
 
-header .brandname a:hover {
-    text-decoration: none;
-    color: chocolate;
-}
-
-header nav {
-    display: flex;
-    flex-direction: row;
-}
-
-header nav a {
-    padding: 1rem;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    width: 50%;
-    text-align: center;
-}
-
-header nav a:hover {
-    color:chocolate;
-    cursor: pointer;
-}
-*/
+ 
 footer {
     
     width: 100%;
@@ -112,7 +77,7 @@ article {
 /**
 /  Page cart.html
 /**/
-
+/*
 #cartContainer, #payment {
     padding: 1rem;
 }
@@ -147,7 +112,7 @@ form {
 form input {
     margin-bottom: 1rem;;
 }
-
+*/
 /**
 /  Page confirmation.html
 /**/
