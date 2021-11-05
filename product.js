@@ -101,7 +101,7 @@ function renderColors(colors) {
         let color = `
         <div >
             <input type="radio" id="${col}"  name ="color" value="${col}" />
-            <label for="${col}" >${col}</label>
+            <label for="${col}" class="fs-6" >${col}</label>
         </div>`
         // on ajoute chaque div  
         colorsContainer += color;
@@ -139,9 +139,9 @@ function getOneTeddy() {
             }
 
             let template = `
-            <article id="${ted._id}" class="row p-1">
+            <article id="${ted._id}" class="row">
 
-                <h2 class="mb-5 p-2 text-center bg-light text-dark ">${ted.name}</h2>
+                <h2 class="text-center text-light bg-danger bg-gradient p-2 mb-4">${ted.name}</h2>
 
                 <div class="col-xs-12 col-md-6 col-lg-6 text-center">
                     <img src="${ted.imageUrl}" class="img-fluid w-100 mb-3 border border-dark" alt="image de ${ted.name}" title="image de ${ted.name}"/>    
@@ -149,11 +149,11 @@ function getOneTeddy() {
 
                 <div class="col-xs-12 col-md-6 col-lg-6  pb-5">
                     <div>
-                        <h4>description :</h4>
+                        <h4 class="text-center text-light bg-danger bg-gradient p-2 mb-4">description</h4>
                         <p>${ted.description}</p>
                     </div>
                     <div>
-                        <h4 class="mb-3">Choissisez votre couleur : </h4>
+                        <h4 class="text-center text-light bg-danger bg-gradient  p-2 mb-4">Choissisez votre couleur</h4>
                         <div>${colorElement}</div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@ function getOneTeddy() {
                         <p>prix : ${formattedPrice + " €"}</p>
                     </div>
                     <div class="col-md-6 text-center d-flex ">
-                        <button class="btn btn-outline-dark  m-auto" onClick="addToCart()">Ajouter au panier</button>
+                        <button class="btn btn-outline-danger  m-auto" onClick="addToCart()">Ajouter au panier</button>
                     </div>
                 </div>
 
