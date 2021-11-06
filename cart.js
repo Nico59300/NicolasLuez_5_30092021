@@ -2,7 +2,7 @@
 let onlineBackendUrl = "https://backend-orinoco.herokuapp.com/api/teddies/order";
 let localBackendUrl = "http://localhost:3000/api/order"
 
-
+let messageBox = document.getElementById('message');
 let ul = document.getElementById('item-list');
 let cart = getCart();
 
@@ -87,21 +87,33 @@ function commander() {
         products.push(el.id);
     })
     console.log(products)
+
     // on envoi au backend un objet
-    fetch(onlineBackendUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/JSON',
-        },
-        body: JSON.stringify({ contact, products })
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            localStorage.removeItem('cart');
-            localStorage.setItem('order', JSON.stringify(data))
-            window.location = `confirmation.html?orderId="${data.orderId}"`
+    if (products.length > 0) {
+        fetch(onlineBackendUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/JSON',
+            },
+            body: JSON.stringify({ contact, products })
         })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                localStorage.removeItem('cart');
+                localStorage.setItem('order', JSON.stringify(data))
+                window.location = `confirmation.html?orderId="${data.orderId}"`
+            })
+    }else { 
+        messageBox.innerHTML = "Vous devez ajouté un article pour passer commande";
+        messageBox.classList.remove('d-none')
+        messageBox.classList.add('text-danger', 'border-danger' );
+        setTimeout( 
+            function() { 
+            message.innerHTML = "";
+            message.classList.add("d-none")
+            }, 4000);
+    }
 
 
 }
