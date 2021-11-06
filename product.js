@@ -144,27 +144,37 @@ function getOneTeddy() {
                 <h2 class="text-center text-light bg-secondary bg-gradient p-2 mb-4 rounded">${ted.name}</h2>
 
                 <div class="col-xs-12 col-md-6 col-lg-6 text-center rounded">
-                <img src="${ted.imageUrl}" class="img-fluid w-100 mb-3 border border-dark rounded" alt="image de ${ted.name}" title="image de ${ted.name}"/>    
+
+                    <img src="${ted.imageUrl}" class="img-fluid w-100 mb-3 border border-dark rounded" alt="image de ${ted.name}" title="image de ${ted.name}"/>    
+                
                 </div>
 
                 <div class="col-xs-12 col-md-6 col-lg-6  pb-5">
+
                     <div>
                         <h4 class="text-center text-light bg-secondary bg-gradient p-2 mb-4 rounded">description</h4>
                         <p>${ted.description}</p>
                     </div>
+
                     <div>
                         <h4 class="text-center text-light bg-secondary bg-gradient  p-2 mb-4 rounded">Choissisez votre couleur</h4>
                         <div>${colorElement}</div>
                     </div>
+
                 </div>
 
                 <div class="d-flex flex-column flex-md-row w-100 h-25 ">
+
+                    
+
                     <div class="col-md-6 text-center pt-3 ">
                         <p>prix : ${formattedPrice + " €"}</p>
                     </div>
+
                     <div class="col-md-6 text-center d-flex ">
                         <button class="btn btn-outline-dark  m-auto" onClick="addToCart()">Ajouter au panier</button>
                     </div>
+
                 </div>
 
             </article>
