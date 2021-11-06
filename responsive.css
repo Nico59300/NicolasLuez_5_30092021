@@ -6,12 +6,18 @@
     
 
     article img {
-      max-height: 210px!important;
+        height: 200px!important;
     }
 }
 
 
 /*  DESKTOP  */
 @media screen and (min-width: 769px) {
-    
+    .indexImg img {
+        height: 200px!important;
+    }
+
+    .productImg img {
+        height: auto!important;
+    }
 }

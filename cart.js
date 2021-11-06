@@ -74,22 +74,22 @@ function getCart() {
 }
 
 function commander() {
-    let contact = {
-        firstName: document.getElementById('firstname').value,
-        lastName: document.getElementById('lastname').value,
-        address: document.getElementById('adress').value,
-        city: document.getElementById('city').value,
-        email: document.getElementById('email').value
-    };
-    console.log(contact)
-    let products = [];
-    cart.forEach((el) => {
-        products.push(el.id);
-    })
-    console.log(products)
 
+    //on set contact et products
+    let products = setProducts();
+    console.log("products : " + products)
+    let contact = setContact();
+    console.log("contact : " + contact)
+
+    if (products.length == "") {
+        alertMessage('vous devez ajouter un produit au panier pour commander')
+    } else if (contact == "") {
+        let input = document.getElementsByTagName('input');
+
+        alertMessage('vous devez remplir les champs pour commander')
+    }
     // on envoi au backend un objet
-    if (products.length > 0) {
+    else if (products.length > 0 && contact != "") {
         fetch(onlineBackendUrl, {
             method: 'POST',
             headers: {
@@ -104,18 +104,72 @@ function commander() {
                 localStorage.setItem('order', JSON.stringify(data))
                 window.location = `confirmation.html?orderId="${data.orderId}"`
             })
-    }else { 
-        messageBox.innerHTML = "Vous devez ajouté un article pour passer commande";
-        messageBox.classList.remove('d-none')
-        messageBox.classList.add('text-danger', 'border-danger' );
-        setTimeout( 
-            function() { 
-            message.innerHTML = "";
-            message.classList.add("d-none")
-            }, 4000);
     }
 
 
+}
+function setProducts() {
+    if (cart.length > 0) {
+        products = [];
+        cart.forEach((el) => {
+            products.push(el.id);
+        })
+        return products
+    } else {
+
+        return "";
+    }
+}
+function setContact() {
+    if (
+        document.getElementById('firstname').value != "" &&
+        document.getElementById('lastname').value != "" &&
+        document.getElementById('adress').value != "" &&
+        document.getElementById('city').value != "" &&
+        document.getElementById('email').value != ""
+    ) {
+        return {
+            firstName: document.getElementById('firstname').value,
+            lastName: document.getElementById('lastname').value,
+            address: document.getElementById('adress').value,
+            city: document.getElementById('city').value,
+            email: document.getElementById('email').value
+        };
+
+    } else {
+        // inputs is html collection
+        let inputs = document.getElementsByTagName('input')
+        // transform in array
+        let inputs2 = Array.from(inputs)
+        // on peut parcourir pour modifier les input
+        inputs2.forEach((el) => {
+
+            if (el.value == "") {
+                // add red border
+                el.classList.add('border', 'border-1', 'border-danger');
+                // message in placeholder
+                el.placeholder = "champ obligatoire";
+                // remove style and placeholder  on focus
+                el.addEventListener('focus', () => {
+                    el.classList.remove('border', 'border-1', 'border-danger');
+                    el.placeholder = "";
+                })
+            }
+        })
+
+        return "";
+    }
+}
+
+function alertMessage(message) {
+    messageBox.innerHTML = message;
+    messageBox.classList.remove('d-none')
+    messageBox.classList.add('bg-danger');
+    setTimeout(
+        function () {
+            messageBox.innerHTML = "";
+            messageBox.classList.add("d-none")
+        }, 3000);
 }
 
 function calculatePrice() {
@@ -137,14 +191,14 @@ function displayItems() {
 
 
             let li = `
-            <li id="${element.id}" class="d-flex  justify-content-between  p-2 border border-2 border-secondary m-2" >
+            <li id="${element.id}" class="d-flex  justify-content-between  p-2 border border-1 border-secondary m-2" >
                 
                 <div class="d-none d-sm-block w-25">
                     <img  src="${element.imageUrl}" alt="ours ${element.name}" />
                 </div>
                           
                     <div>
-                        <h4><a href='product.html?id="${element.id}"'>${element.name}</a></h4>
+                        <h4><a class="navlink" href='product.html?id="${element.id}"'>${element.name}</a></h4>
                         <span>prix : ${element.price} €</span>
                         <div>
                             <span>quantité : ${element.quantity}</span>
@@ -175,7 +229,7 @@ function displayItems() {
         })
 
     } else {
-        ul.innerHTML = `<li>Votre panier est vide.</li>`
+        ul.innerHTML = `<li class="text-center p-2 fw-bolder">Votre panier est vide.</li>`
     }
 }
 

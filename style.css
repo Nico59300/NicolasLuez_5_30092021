@@ -77,6 +77,8 @@ article {
 /**
 /  Page cart.html
 /**/
+
+li {list-style-type: none;}
 /*
 #cartContainer, #payment {
     padding: 1rem;

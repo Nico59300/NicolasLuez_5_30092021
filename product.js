@@ -61,7 +61,7 @@ function comfirmMessage (text) {
         function() { 
         message.innerHTML = "";
         message.classList.add("d-none")
-        }, 4000);
+        }, 3000);
 }
 
 function addToCart() {
@@ -70,7 +70,7 @@ function addToCart() {
 
     if (inCart == false) {
         cart.push(tedToCart)
-        let message = "ajouté au panier";
+        let message = "Produit ajouté au panier";
         comfirmMessage(message);
         console.log('ajouté au panier')
     }else {
@@ -143,7 +143,7 @@ function getOneTeddy() {
 
                 <h2 class="text-center text-light bg-secondary bg-gradient p-2 mb-4 rounded">${ted.name}</h2>
 
-                <div class="col-xs-12 col-md-6 col-lg-6 text-center rounded">
+                <div class="col-xs-12 col-md-6 col-lg-6 text-center rounded productImg">
 
                     <img src="${ted.imageUrl}" class="img-fluid w-100 mb-3 border border-dark rounded" alt="image de ${ted.name}" title="image de ${ted.name}"/>    
                 
