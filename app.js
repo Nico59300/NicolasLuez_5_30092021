@@ -16,7 +16,7 @@ function getAllTeddies(){
             // pour chaque element on crée un article avec les info
             let ted = `
             <div class="col-xs-12 col-md-6 col-lg-4">
-                <article class="d-flex flex-column max  bg-secondary border border border-2 border-dark text-white rounded">
+                <article class="d-flex flex-column max  bg-secondary border border border-2 border-dark text-white rounded shadow">
                     <h2 class="pt-2 text-center">${element.name}</h2>
                     <div class="indexImg" >
                         <img class="img-fluid border-top border-bottom  border-2 border-dark" style="max-height: 233px;" src="${element.imageUrl}" title="ourson ${element.name}" alt="ourson ${element.name}" />

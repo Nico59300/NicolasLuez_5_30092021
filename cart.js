@@ -191,14 +191,14 @@ function displayItems() {
 
 
             let li = `
-            <li id="${element.id}" class="d-flex  justify-content-between  p-2 border border-1 border-secondary m-2" >
+            <li id="${element.id}" class="d-flex  justify-content-between  p-2 border border-1 border-secondary m-2 shadow" >
                 
                 <div class="d-none d-sm-block w-25">
                     <img  src="${element.imageUrl}" alt="ours ${element.name}" />
                 </div>
                           
                     <div>
-                        <h4><a class="navlink" href='product.html?id="${element.id}"'>${element.name}</a></h4>
+                        <h4><a class="link-secondary" href='product.html?id="${element.id}"'>${element.name}</a></h4>
                         <span>prix : ${element.price} €</span>
                         <div>
                             <span>quantité : ${element.quantity}</span>

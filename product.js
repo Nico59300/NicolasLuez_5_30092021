@@ -105,6 +105,7 @@ function renderColors(colors) {
         </div>`
         // on ajoute chaque div  
         colorsContainer += color;
+
     })
     // on ajoute un container autour des élement
     colorsContainer = '<div id="colors-container"> ' + colorsContainer + '</div>'
@@ -186,6 +187,9 @@ function getOneTeddy() {
                     tedToCart.color =  e.target.value;
                 })
             })
+            let firstColor = document.getElementById('colors-container').firstElementChild.firstElementChild;
+            firstColor.setAttribute("checked", "checked")
+            
             document.title = ted.name + " | Orinoco, ours en peluche";
         })
 }
