@@ -56,9 +56,9 @@
       
       <div class="container">
         
-        <div class="d-flex flex-column flex-lg-row">
+        <div class="d-flex flex-column flex-md-row">
 
-          <div class="col-lg-5 m-lg-2 ">
+          <div class="col-md-6 m-md-2 ">
             <div>
               <h2 class="text-center text-light bg-secondary bg-gradient p-2 mb-4 rounded">Votre panier</h2>
               <div id="totalCart" class="text-center"></div>
@@ -71,39 +71,39 @@
             </div>
           </div>
 
-          <section id="payment" class="col-lg-7 pb-3 m-lg-2">
+          <section id="payment" class="col-md-6 pb-3 m-md-2">
 
             <h2 class="text-center text-light bg-secondary bg-gradient p-2 mb-4 rounded">Information de paiement</h2>
   
             <form>
   
-              <div class="form-group mb-3">
+              <div class="form-group mb-2">
                 <label for="firstname" class="mb-3">Prénom</label>
                 <input id="firstname" class="form-control shadow-sm" type="text" required>
               </div>
   
-              <div class="form-group">
+              <div class="form-group mb-2">
                 <label for="lastname" class="mb-3">Nom</label>
                 <input id="lastname" class="form-control shadow-sm" type="text" required>
               </div>
   
-              <div class="form-group">
+              <div class="form-group mb-2">
                 <label for="adress" class="mb-3">Adresse</label>
                 <input id="adress" class="form-control shadow-sm" type="text" required>
               </div>
   
-              <div class="form-group">
+              <div class="form-group mb-2">
                 <label for="city" class="mb-3">Ville</label>
                 <input id="city" class="form-control shadow-sm" type="text" required>
               </div>
   
-              <div class="form-group pb-3">
+              <div class="form-group mb-2">
                 <label for="email" class="mb-3">email</label>
                 <input id="email" class="form-control shadow-sm" type="email" required>
               </div>
   
-              <div class="container text-center">
-                <span id="buyButton" class="btn btn-outline-dark" onClick=`commander()`>Commander</span>
+              <div class="container text-center pt-2">
+                <span id="buyButton" class="btn btn-outline-dark" onClick="commander()">Commander</span>
               </div>
   
             </form>
