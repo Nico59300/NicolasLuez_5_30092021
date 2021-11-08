@@ -198,17 +198,17 @@ function displayItems() {
                 </div>
                           
                     <div>
-                        <h6><a class="link-secondary" href='product.html?id="${element.id}"'>${element.name}</a></h6>
+                        <a class="d-block link-secondary" href='product.html?id="${element.id}"' title="voir la page du produit">${element.name}</a>
                         <span>prix : ${element.price} €</span>
                         <div>
                             <span>quantité : ${element.quantity}</span>
-                            <span id="${"moins-" + element.id}"><i class="fas fa-minus-square "></i></span>
-                            <span id="${"plus-" + element.id}"><i class="fas fa-plus-square "></i></span>
+                            <span id="${"moins-" + element.id}"><i class="fas fa-minus-square fa-lg" title="diminuer quantité"></i></span>
+                            <span id="${"plus-" + element.id}"><i class="fas fa-plus-square fa-lg " title="augmenter quantité"></i></span>
                         </div>
                     </div>
 
                     <div class="d-flex align-items-center">
-                        <button id="del-${element.id}" class="btn btn-danger "><i class="fas fa-trash"></i></button>
+                        <button id="del-${element.id}" class="btn btn-danger " aria-label="Supprimer l'article" title="supprimer l'article"><i class="fas fa-trash"></i></button>
                     </div>
 
             </li>`;
