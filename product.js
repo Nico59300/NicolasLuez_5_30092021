@@ -13,6 +13,7 @@ let tedToCart;
 let cart;
 
 //Functions
+
 function getId() {
 
     // on récupère la requête dans l'url
@@ -37,21 +38,19 @@ function getCart() {
 }
 
 function verifInCart(cart) {
-    if (cart.length > 0) {
-        let indexes = [];
-       cart.forEach((el) => {
-           if(el.id == tedToCart.id){
-               indexes.push(cart.indexOf(el))
-           }
-       })
-    if (indexes.length >0) {
+    let indexes = [];
+    //on parcours le cart
+    cart.forEach((el) => {
+        if(el.id == tedToCart.id) {
+            indexes.push(cart.indexOf(el))
+        }
+    })
+    
+    if (indexes.length > 0) {
            return true
-       }else {return false}
-       
-    }else {
-        return false
-    }
-
+       }else {
+           return false
+        }
 }
 
 function comfirmMessage (text) {
@@ -89,7 +88,7 @@ function addToCart() {
 
 
 
-
+// sert dan
 function renderColors(colors) {
 
     // conteneur vide pour recevoir les div générées pour chaque couleur 
