@@ -90,7 +90,7 @@ function commander() {
     }
     // on envoi au backend un objet
     else if (products.length > 0 && contact != "") {
-        fetch(onlineBackendUrl, {
+        fetch(localBackendUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/JSON',

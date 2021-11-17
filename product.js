@@ -115,7 +115,7 @@ function renderColors(colors) {
 
 function getOneTeddy() {
 
-    let url = onlineBackendUrl + "/" + id;
+    let url = localBackendUrl + "/" + id;
     fetch(url)
         .then(res => res.json())
         .then(obj => {

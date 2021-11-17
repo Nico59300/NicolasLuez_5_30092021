@@ -7,7 +7,7 @@ let collection = document.getElementById("collection");
 
 function getAllTeddies(){
     // onrécupère les teddies
-    fetch(onlineBackendUrl)
+    fetch(localBackendUrl)
     .then( data => data.json())
     .then(obj => {
         let teddies = obj;
