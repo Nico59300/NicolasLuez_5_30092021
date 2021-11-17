@@ -1,6 +1,6 @@
 // orinoco backend url
 let onlineBackendUrl = "https://backend-orinoco.herokuapp.com/api/teddies/order";
-let localBackendUrl = "http://localhost:3000/api/order"
+let localBackendUrl = "http://localhost:3000/api/teddies/order"
 
 let messageBox = document.getElementById('message');
 let ul = document.getElementById('item-list');
