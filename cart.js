@@ -77,19 +77,18 @@ function commander() {
 
     //on set contact et products
     let products = setProducts();
-    console.log("products : " + products)
     let contact = setContact();
-    console.log("contact : " + contact)
-
+    console.log(contact.city)
     if (products.length == "") {
         alertMessage('vous devez ajouter un produit au panier pour commander')
-    } else if (contact == "") {
-        let input = document.getElementsByTagName('input');
-
+    } 
+    
+    else if (contact == "") {
+        
         alertMessage('vous devez remplir les champs pour commander')
     }
     // on envoi au backend un objet
-    else if (products.length > 0 && contact != "") {
+    else if (products && contact) {
         fetch(localBackendUrl, {
             method: 'POST',
             headers: {
@@ -121,44 +120,83 @@ function setProducts() {
     }
 }
 function setContact() {
-    if (
-        document.getElementById('firstname').value != "" &&
-        document.getElementById('lastname').value != "" &&
-        document.getElementById('adress').value != "" &&
-        document.getElementById('city').value != "" &&
-        document.getElementById('email').value != ""
-    ) {
-        return {
-            firstName: document.getElementById('firstname').value,
-            lastName: document.getElementById('lastname').value,
-            address: document.getElementById('adress').value,
-            city: document.getElementById('city').value,
-            email: document.getElementById('email').value
-        };
+    let contactobject = new Object();
+    //on crée un tableau des inputs
+    let inputs = Array.from(document.getElementsByTagName('input'))
+    // controle champs vide ou non
+    inputs.forEach((input) => {
+        if (input.value == "") {
+            // add red border
+            input.classList.add('border', 'border-1', 'border-danger');
+            // message in placeholder
+            input.placeholder = "champ obligatoire";
+            input.addEventListener('focus', () => {
+                input.classList.remove('border', 'border-1', 'border-danger');
+                input.placeholder = "";
+            })
+            
+        }
 
-    } else {
-        // inputs is html collection
-        let inputs = document.getElementsByTagName('input')
-        // transform in array
-        let inputs2 = Array.from(inputs)
-        // on peut parcourir pour modifier les input
-        inputs2.forEach((el) => {
-
-            if (el.value == "") {
+        if (input.id == "email") {
+            // regex format email
+            let regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            // on verifie que l'email est valide
+            if (input.value.match(regex)) {
+                contactobject.email = input.value;
+                console.log("email ok")
+            } else {
                 // add red border
-                el.classList.add('border', 'border-1', 'border-danger');
-                // message in placeholder
-                el.placeholder = "champ obligatoire";
-                // remove style and placeholder  on focus
-                el.addEventListener('focus', () => {
-                    el.classList.remove('border', 'border-1', 'border-danger');
-                    el.placeholder = "";
+                input.classList.add('border', 'border-1', 'border-danger');
+                console.log("email invalide")
+
+                // eventlistener pour retirer le style au focus et vider le placeholder
+                input.addEventListener('focus', () => {
+                    input.classList.remove('border', 'border-1', 'border-danger');
+                    input.placeholder = "";
                 })
             }
-        })
+        }
 
-        return "";
+        if (input.id == "firstname" || input.id == "lastname" || input.id == "city") {
+            let regex = /^[a-zA-Z]/
+            if (input.value.match(regex)) {
+                if (input.id == "firstname") { contactobject.firstName = input.value }
+                if (input.id == "lastname") { contactobject.lastName = input.value }
+                if (input.id == "city") { contactobject.city = input.value }
+            } else {
+                
+                input.classList.add('border', 'border-1', 'border-danger');
+                // eventlistener pour retirer le style au focus et vider le placeholder
+                input.addEventListener('focus', () => {
+                    input.classList.remove('border', 'border-1', 'border-danger');
+                    input.placeholder = "";
+                })
+                console.log(`${input.id} : mauvais format`)
+            }
+        }
+        if (input.id == "adress") {
+            let regex = /^[a-zA-Z0-9]/
+            if (input.value.match(regex)) {
+                { contactobject.address = input.value }
+            } else {
+                input.classList.add('border', 'border-1', 'border-danger');
+                // eventlistener pour retirer le style au focus et vider le placeholder
+                input.addEventListener('focus', () => {
+                    input.classList.remove('border', 'border-1', 'border-danger');
+                    input.placeholder = "";
+                })
+                console.log(`${input.id} : mauvais format`)
+            }
+        }
+    })
+    if (contactobject && contactobject.firstName != undefined  && contactobject.lastName != undefined && contactobject.address != undefined && contactobject.city != undefined  && contactobject.email != undefined ) {
+
+         return contactobject
+    } else { 
+        console.log('not ok')
+        return "" 
     }
+
 }
 
 function alertMessage(message) {
